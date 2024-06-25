@@ -8,8 +8,8 @@ function createGrid(gridSize) {
     for (let i = 0; i < gridSize * gridSize; i++) {
         const item = document.createElement('div');
         item.classList.add('grid-item');
-        item.style.setProperty('--item-width', `${itemWidth}vw`)
-        item.style.setProperty('--item-height', `${itemHeight}vh`)
+        item.style.setProperty('--item-width', `${itemWidth}%`)
+        item.style.setProperty('--item-height', `${itemHeight}%`)
         container.appendChild(item)
 
         item.addEventListener('mouseover', () => {
@@ -18,4 +18,4 @@ function createGrid(gridSize) {
     }
 }
 
-createGrid(100)
+createGrid(65)

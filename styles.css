@@ -1,24 +1,115 @@
 html, body {
-    height: 100%;
+    height:auto;
     margin: 0;
     padding: 0;
-}
-
-.test {
-    width: 50vw;
-    height: 50vh;
 }
 
 .grid-container {
     display: flex;
     flex-wrap: wrap;
-    height: 30%;
-    width: 30%;
+    border: 2px dotted blue;
+    min-width: 750px;
+    min-height: 620px;
+    width: 750px;
 }
 
 .grid-item {
     width: var(--item-width);
     height: var(--item-height);
-    border: 1px solid green;
+    border: none;
     box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0
+}
+
+.wrapper {
+    display: flex;
+    flex-direction:column;
+    border: 1px solid green;
+    min-height: 800px;
+    height: 800px;
+    margin-top: 30px;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    flex: 0 0 auto;
+}
+
+.main {
+    display: flex;
+    border: 3px dotted purple;
+    flex: 1 0 auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    max-height: 800px;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    border: 2px dotted green;
+    width: 300px;
+    min-width: 300px;
+}
+
+.settings div {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    border: 1px solid green;
+    padding: 10px;
+    justify-content: center;
+    padding: 0;
+    margin: 0
+}
+
+.grid-slider p {
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-slider input {
+    width: 250px;
+}
+
+.color-picker input[type="color"] {
+    border: 0px solid #530d0d; /* Light grey border */
+    height: 70%; /* Set height to ensure it fits well */
+    cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
+    width: 70%; /* Expand to fill its container */
+    padding: 0px; /* Padding to make it more clickable */
+    background-image: none; /* Remove any background image */
+    margin: 0;
+    justify-content: center;
+    background: transparent;
+}
+
+.color-picker {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.settings div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings div button {
+    height: 35px;
+    width: 70%
 }
