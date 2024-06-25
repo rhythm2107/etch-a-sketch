@@ -9,7 +9,8 @@ html, body {
     flex-wrap: wrap;
     border: 2px dotted blue;
     min-width: 750px;
-    min-height: 620px;
+    min-height: 660px;
+    max-height: 660px;
     width: 750px;
 }
 
@@ -57,8 +58,11 @@ body {
     display: flex;
     flex-direction: column;
     border: 2px dotted green;
+    flex: 0 1 300px;
     width: 300px;
     min-width: 300px;
+    min-height: 660px;
+    max-height: 660px;
 }
 
 .settings div {
@@ -112,4 +116,38 @@ body {
 .settings div button {
     height: 35px;
     width: 70%
+}
+
+@media (max-width: 1082px) {
+    .main {
+        max-height: 2500px;
+        height: 1500px;
+    }
+
+    .wrapper {
+        max-height: 2500px;
+        height: 1600px;
+    }
+}
+
+.settings .spaceout {
+    flex: 2 0 0;
+}
+
+.settings .color-picker {
+    flex: 2.5 0 0;
+}
+
+.grid-slider p span {
+    margin: 0px 5px;
+}
+
+.button-on {
+    background-color: green;
+    color: white;
+}
+
+.button-off {
+    background-color: red;
+    color: white;
 }

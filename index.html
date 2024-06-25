@@ -17,14 +17,15 @@
         <div class="main">
             <div class="settings">
                 <div class="color-picker"><input type="color" id="colorPicker" value="#ff0000"></div>
-                <div class="mode-rainbow"><button>Rainbow</button></div>
+                <div class="mode-rainbow"><button id="rainbow">Rainbow</button></div>
                 <div class="mode-eraser"><button>Eraser</button></div>
                 <div class="mode-lighter"><button>Lighter</button></div>
                 <div class="mode-shader"><button>Shader</button></div>
-                <div class="clear-grid"><button>Clear Grid</button></div>
+                <div class="spaceout"></div>
+                <div class="clear-grid"><button id="clear-grid">Clear Grid</button></div>
                 <div class="grid-slider">
-                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                    <p>Grid N x N</p>
+                    <input type="range" min="5" max="100" value="25" class="slider" id="myRange">
+                    <p>Grid Size: <span class="grid-size">25</span> x <span class="grid-size">25</span></p>
                 </div>
                 
                 <div class="signature">Designed by Rhythm2107 [github]</div>
