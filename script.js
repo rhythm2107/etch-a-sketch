@@ -217,6 +217,17 @@ slider.addEventListener('input', function () {
         element.textContent = slider.value
         createGrid(slider.value)
     })
+    if (gridActive === true) {
+        const gridItems = document.querySelectorAll('.grid-item')
+        gridItems.forEach(function (element) {
+            gridActive = true
+            element.classList.add('grid-toggle')
+            document.getElementById('toggle-grid').classList.add('button-on');
+            document.getElementById('toggle-grid').classList.remove('button-off');
+
+        })
+        
+    }
 })
 
 // Functions for Lighten/Darken
