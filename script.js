@@ -212,6 +212,7 @@ document.getElementById('eraser').addEventListener('click', () => toggleMode(set
 document.getElementById('lighter').addEventListener('click', () => toggleMode(setLighterMode, 'lighter'))
 document.getElementById('shader').addEventListener('click', () => toggleMode(setShaderMode, 'shader'))
 document.getElementById('clear-grid').addEventListener('click', () => clearGrid())
+document.getElementById('toggle-grid').addEventListener('click', () => toggleGridLines())
 
 // Slider
 const slider = document.getElementById('myRange')
@@ -243,6 +244,26 @@ function colorGrab(color) {
     let hexColor = extractRgbAndConvertToHex(color)
     colorPicker.value = hexColor
     deactivateAllModes('all')
+}
+
+// Function for Toggling Grid Lines
+let gridActive = false
+
+
+function toggleGridLines() {
+    const gridItems = document.querySelectorAll('.grid-item')
+
+    if (gridActive === false) {
+        gridItems.forEach(function (element) {
+            gridActive = true
+            element.classList.add('grid-toggle')
+        })
+    } else {
+        gridItems.forEach(function (element) {
+            gridActive = false
+            element.classList.remove('grid-toggle')
+        })
+    }
 }
 
 createGrid(25)

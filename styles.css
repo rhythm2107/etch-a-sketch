@@ -152,3 +152,7 @@ body {
     background-color: red;
     color: white;
 }
+
+.grid-toggle {
+    border: 1px solid green;
+}
