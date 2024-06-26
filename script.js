@@ -1,32 +1,6 @@
-function createGrid(gridSize) {
-    const container = document.querySelector('.grid-container')
-    container.innerHTML = ''
-
-    const itemWidth = 100 / gridSize
-    const itemHeight = 100 / gridSize
-
-    for (let i = 0; i < gridSize * gridSize; i++) {
-        const item = document.createElement('div');
-        item.classList.add('grid-item');
-        item.style.setProperty('--item-width', `${itemWidth}%`)
-        item.style.setProperty('--item-height', `${itemHeight}%`)
-        container.appendChild(item)
-
-
-    }
-}
-
-function clearGrid() {
-    const container = document.querySelector('.grid-container')
-    const slider = document.getElementById('myRange')
-
-    createGrid(slider.value)
-}
-
+// Helper Functions for setting, creating, converting color values
 function extractRgbAndConvertToHex(rgbString) {
-    // Extract the numerical values from the RGB string
     const [r, g, b] = rgbString.match(/\d+/g).map(Number);
-    // Convert these RGB values to hex
     return rgbToHex(r, g, b);
 }
 
@@ -34,8 +8,28 @@ function rgbToHex(r, g, b) {
     return "#" + ((r << 16) + (g << 8) + b).toString(16).padStart(6, '0');
 }
 
-function getRandomColor() {
+function rgbToHsl(rgb) {
+    // Grab the RGB values and convert them to the range 0-1
+    let [r, g, b] = rgb.match(/\d+/g).map(Number).map(v => v / 255);
+    let max = Math.max(r, g, b), min = Math.min(r, g, b);
+    let h, s, l = (max + min) / 2;
 
+    if (max === min) {
+        h = s = 0; // achromatic
+    } else {
+        let d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+    }
+    return `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`;
+}
+
+function getRandomColor() {
     let colors = [0, 0, 0]
     let zeroIndex = Math.floor(Math.random() * 3)
 
@@ -64,40 +58,53 @@ function getEraserColor() {
     return whiteColor
 }
 
+
+// Main function for settings bar
 function getCurrentColor(target) {
     let color;
 
     if (rainbowModeActive) {
-        return generateRandomColorHSL();  // Use a random HSL color if Rainbow Mode is active
+        return generateRandomColorHSL();
     } else if (eraserModeActive) {
-        return getEraserColor();  // Return white color for eraser
+        return getEraserColor();
     } else if (lighterModeActive) {
-        color = getComputedStyle(target).backgroundColor; // Get the current color from the element
-        return lightenColor(rgbToHsl(color), 4); // Lighten the color
+        color = getComputedStyle(target).backgroundColor;
+        return lightenColor(rgbToHsl(color), 4);
     } else if (shaderModeActive) {
-        color = getComputedStyle(target).backgroundColor; // Get the current color from the element
-        return darkenColor(rgbToHsl(color), 4); // Darken the color
+        color = getComputedStyle(target).backgroundColor;
+        return darkenColor(rgbToHsl(color), 4);
     } else if (colorGrabActive) {
         color = getComputedStyle(target).backgroundColor;
         return colorGrab(color)
-    }
-    
-    else {
-        return colorPicker.value;  // Use the selected color if Rainbow Mode is inactive
+    } else {
+        return colorPicker.value;
     }
 }
 
+// Main function for creating sketch grid
+function createGrid(gridSize) {
+    const container = document.querySelector('.grid-container')
+    container.innerHTML = ''
 
+    const itemWidth = 100 / gridSize
+    const itemHeight = 100 / gridSize
 
-// Button Event Listeners
+    for (let i = 0; i < gridSize * gridSize; i++) {
+        const item = document.createElement('div');
+        item.classList.add('grid-item');
+        item.style.setProperty('--item-width', `${itemWidth}%`)
+        item.style.setProperty('--item-height', `${itemHeight}%`)
+        container.appendChild(item)
+    }
+}
 
-// Clear Grid Button
-const clearGridButton = document.getElementById('clear-grid')
-clearGridButton.addEventListener('click', function () {
-    clearGrid()
-})
+function clearGrid() {
+    const slider = document.getElementById('myRange')
 
-// Event Listeners for grid color-changing
+    createGrid(slider.value)
+}
+
+// Event Listeners responsible for sketching, grid items changing colors
 const colorPicker = document.getElementById('colorPicker')
 const gridContainer = document.querySelector('.grid-container');
 let mouseIsDown = false;
@@ -119,20 +126,6 @@ gridContainer.addEventListener('mouseover', function (event) {
         event.target.style.backgroundColor = getCurrentColor(event.target);
     }
 });
-
-// Slider
-const slider = document.getElementById('myRange')
-const gridSizeElements = document.querySelectorAll('.grid-size')
-
-slider.addEventListener('input', function () {
-    gridSizeElements.forEach(function (element) {
-        element.textContent = slider.value
-        createGrid(slider.value)
-    })
-})
-
-//
-
 
 // Function to deactivate all modes
 function deactivateAllModes(currentId) {
@@ -166,7 +159,7 @@ function deactivateAllModes(currentId) {
 
 // Function to toggle a specific mode
 function toggleMode(setModeFunction, elementId) {
-    const isActive = setModeFunction(); // Toggle and get the new state
+    const isActive = setModeFunction();
     deactivateAllModes(elementId); // Deactivate all other modes except the current one
 
     const element = document.getElementById(elementId);
@@ -213,11 +206,23 @@ let lighterModeActive = false
 let shaderModeActive = false
 let colorGrabActive = false
 
+document.getElementById('color-grabber').addEventListener('click', () => toggleMode(setColorGrabMode, 'color-grabber'))
 document.getElementById('rainbow').addEventListener('click', () => toggleMode(setRainbowMode, 'rainbow'))
 document.getElementById('eraser').addEventListener('click', () => toggleMode(setEraserMode, 'eraser'))
 document.getElementById('lighter').addEventListener('click', () => toggleMode(setLighterMode, 'lighter'))
 document.getElementById('shader').addEventListener('click', () => toggleMode(setShaderMode, 'shader'))
-document.getElementById('color-grabber').addEventListener('click', () => toggleMode(setColorGrabMode, 'color-grabber'))
+document.getElementById('clear-grid').addEventListener('click', () => clearGrid())
+
+// Slider
+const slider = document.getElementById('myRange')
+const gridSizeElements = document.querySelectorAll('.grid-size')
+
+slider.addEventListener('input', function () {
+    gridSizeElements.forEach(function (element) {
+        element.textContent = slider.value
+        createGrid(slider.value)
+    })
+})
 
 // Functions for Lighten/Darken
 function lightenColor(hsl, amount) {
@@ -232,27 +237,7 @@ function darkenColor(hsl, amount) {
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }
 
-function rgbToHsl(rgb) {
-    // Grab the RGB values and convert them to the range 0-1
-    let [r, g, b] = rgb.match(/\d+/g).map(Number).map(v => v / 255);
-    let max = Math.max(r, g, b), min = Math.min(r, g, b);
-    let h, s, l = (max + min) / 2;
-
-    if (max === min) {
-        h = s = 0; // achromatic
-    } else {
-        let d = max - min;
-        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        switch (max) {
-            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-            case g: h = (b - r) / d + 2; break;
-            case b: h = (r - g) / d + 4; break;
-        }
-        h /= 6;
-    }
-    return `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`;
-}
-
+// Function for Color Grab
 function colorGrab(color) {
     let colorPicker = document.getElementById('colorPicker')
     let hexColor = extractRgbAndConvertToHex(color)
