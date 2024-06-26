@@ -23,7 +23,6 @@ html, body {
     max-height: 660px;
     background-color: var(--primary-color);
     border-radius: 12px;
-    margin-right: 150px;
 }
 
 .grid-container {
@@ -77,6 +76,7 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     max-height: 800px;
+    gap: 150px;
 }
 
 .settings div {
@@ -162,7 +162,7 @@ input[type="color"]::-webkit-color-swatch {
     font-weight: 700;
 }
 
-@media (max-width: 1082px) {
+@media (max-width: 1217px) {
     .main {
         max-height: 2500px;
         height: 1500px;
