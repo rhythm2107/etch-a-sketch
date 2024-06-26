@@ -284,3 +284,4 @@ function clearGrid() {
 }
 
 createGrid(25)
+toggleGridLines()
