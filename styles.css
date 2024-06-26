@@ -19,6 +19,7 @@ html, body {
     height: var(--item-height);
     border: none;
     box-sizing: border-box;
+    background-color: rgb(255, 255, 255)
 }
 
 body {
