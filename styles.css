@@ -1,17 +1,41 @@
+:root {
+    --primary-color: #1B1A55;
+    --secondary-color: #070F2B;
+    --accent-color: #9290C3;
+}
+
 html, body {
     height:auto;
     margin: 0;
     padding: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: var(--secondary-color)
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    /* border: 2px dotted green; */
+    flex: 0 1 300px;
+    width: 300px;
+    min-width: 300px;
+    min-height: 660px;
+    max-height: 660px;
+    background-color: var(--primary-color);
+    border-radius: 12px;
+    margin-right: 150px;
 }
 
 .grid-container {
     display: flex;
     flex-wrap: wrap;
-    border: 2px dotted blue;
+    border: 12px solid var(--primary-color);
     min-width: 750px;
     min-height: 660px;
     max-height: 660px;
     width: 750px;
+    box-sizing: border-box;
+    border-radius: 6px;
 }
 
 .grid-item {
@@ -30,7 +54,7 @@ body {
 .wrapper {
     display: flex;
     flex-direction:column;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     min-height: 800px;
     height: 800px;
     margin-top: 30px;
@@ -40,37 +64,26 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     flex: 0 0 auto;
 }
 
 .main {
     display: flex;
-    border: 3px dotted purple;
+    /* border: 3px dotted purple; */
     flex: 1 0 auto;
     margin-top: 30px;
     margin-bottom: 30px;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-wrap: wrap;
     max-height: 800px;
-}
-
-.settings {
-    display: flex;
-    flex-direction: column;
-    border: 2px dotted green;
-    flex: 0 1 300px;
-    width: 300px;
-    min-width: 300px;
-    min-height: 660px;
-    max-height: 660px;
 }
 
 .settings div {
     display: flex;
     flex-direction: column;
     flex: 1 0 auto;
-    border: 1px solid green;
+    /* border: 2px solid green; */
     padding: 10px;
     justify-content: center;
     padding: 0;
@@ -84,14 +97,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--accent-color)
 }
 
 .grid-slider input {
-    width: 250px;
+    width: 220px;
 }
 
 .color-picker input[type="color"] {
-    border: 0px solid #530d0d; /* Light grey border */
+    border: 0px solid var(--accent-color);
     height: 70%; /* Set height to ensure it fits well */
     cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
     width: 70%; /* Expand to fill its container */
@@ -116,7 +130,12 @@ body {
 
 .settings div button {
     height: 35px;
-    width: 70%
+    width: 70%;
+    border: 3px solid var(--accent-color);
+    color: var(--accent-color);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    transition: background-color 0.1s, color 0.1s;
+    border-radius: 5px;
 }
 
 @media (max-width: 1082px) {
@@ -132,11 +151,12 @@ body {
 }
 
 .settings .spaceout {
-    flex: 2 0 0;
+    flex: 5 0 0;
 }
 
 .settings .color-picker {
-    flex: 2.5 0 0;
+    flex: 6 0 0;
+    margin-top: 10px;
 }
 
 .grid-slider p span {
@@ -144,15 +164,93 @@ body {
 }
 
 .button-on {
-    background-color: green;
-    color: white;
+    background-color: var(--accent-color);
+    color: var(--primary-color) !important;
 }
 
 .button-off {
-    background-color: red;
-    color: white;
+    background-color: transparent;
 }
 
 .grid-toggle {
-    border: 1px solid green;
+    border: 1px solid var(--accent-color);
 }
+
+.tiny5-regular {
+    font-family: "Tiny5", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 50px;
+    margin: 15px;
+    color: var(--accent-color)
+}
+
+.signature {
+    display: flex;
+    flex-direction: row;
+}
+
+.signature p {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 7px;
+    color: var(--accent-color);
+}
+
+
+.signature-image {
+    margin: 0;
+    margin-top: 5px;
+    padding: 0;
+    width: 22px;
+    height: 22px;
+}
+    
+.slider {
+    width: 100px;
+    height: 15px;
+    background: #111;
+    outline: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 1);
+    -webkit-appearance: none;
+  }
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #0b140c;
+    cursor: pointer;
+    border: 2px solid #333;
+    box-shadow: -407px 0 0 400px var(--accent-color);
+  }
+  
+hr {
+    border: 1.2px solid #333;
+    width: 220px;
+    height: 1.8px;
+    background-color: var(--accent-color);
+    margin: 20px 0; /* Adjust spacing around the line */
+    border-radius: 60%;
+}
+
+
+hr {
+    &:before,
+    &:after {
+      height: 6px;
+      -webkit-filter: blur(5px);
+      border-radius: 5px;
+    }
+    
+    &:before {
+      background: linear-gradient(to right, blue, hotpink);
+    }
+    
+    &:after {
+      background: linear-gradient(to left, blue, hotpink);
+    }
+  }

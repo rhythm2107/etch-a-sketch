@@ -6,31 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <script rel="javascript" src="./script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
     <title>Etch-a-sketch</title>
 </head>
 
 <body>
     <div class="wrapper">
         <div class="header">
-            <h1>SKETCHBOOK</h1>
+            <h1 class="tiny5-regular">SKETCHBOOK</h1>
         </div>
         <div class="main">
             <div class="settings">
-                <div class="color-picker"><input type="color" id="colorPicker" value="#ff0000"></div>
-                <div class="color-grabber"><button id="color-grabber">Grab Color</button></div>
-                <div class="mode-rainbow"><button id="rainbow">Rainbow</button></div>
-                <div class="mode-eraser"><button id="eraser">Eraser</button></div>
-                <div class="mode-lighter"><button id="lighter">Lighter</button></div>
-                <div class="mode-shader"><button id="shader">Shader</button></div>
-                <div class="spaceout"></div>
-                <div class="toggle-grid"><button id="toggle-grid">Toggle Grid Lines</button></div>
-                <div class="clear-grid"><button id="clear-grid">Clear Grid</button></div>
+                <div class="color-picker"><input type="color" id="colorPicker" value="#000000"></div>
+                <div class="color-grabber"><button id="color-grabber" class="button-off">Grab Color</button></div>
+                <div class="mode-rainbow"><button id="rainbow" class="button-off">Rainbow</button></div>
+                <div class="mode-eraser"><button id="eraser" class="button-off">Eraser</button></div>
+                <div class="mode-lighter"><button id="lighter" class="button-off">Lighter</button></div>
+                <div class="mode-shader"><button id="shader" class="button-off">Shader</button></div>
+                <div class="spaceout"><hr></div>
+                <div class="toggle-grid"><button id="toggle-grid" class="button-off">Toggle Grid Lines</button></div>
+                <div class="clear-grid"><button id="clear-grid" class="button-off">Clear Grid</button></div>
                 <div class="grid-slider">
                     <input type="range" min="5" max="100" value="25" class="slider" id="myRange">
                     <p>Grid Size: <span class="grid-size">25</span> x <span class="grid-size">25</span></p>
                 </div>
-                
-                <div class="signature">Designed by Rhythm2107 [github]</div>
+
+                <div class="signature">
+                    <p>Created by Rhythm2107</p>
+                    <a href="https://github.com/rhythm2107">
+                        <img class="signature-image" src="./github2.svg" alt="GitHub">
+                    </a>
+                </div>
             </div>
             <div class="grid-container"></div>
         </div>

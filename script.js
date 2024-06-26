@@ -98,12 +98,6 @@ function createGrid(gridSize) {
     }
 }
 
-function clearGrid() {
-    const slider = document.getElementById('myRange')
-
-    createGrid(slider.value)
-}
-
 // Event Listeners responsible for sketching, grid items changing colors
 const colorPicker = document.getElementById('colorPicker')
 const gridContainer = document.querySelector('.grid-container');
@@ -249,7 +243,6 @@ function colorGrab(color) {
 // Function for Toggling Grid Lines
 let gridActive = false
 
-
 function toggleGridLines() {
     const gridItems = document.querySelectorAll('.grid-item')
 
@@ -257,13 +250,37 @@ function toggleGridLines() {
         gridItems.forEach(function (element) {
             gridActive = true
             element.classList.add('grid-toggle')
+            document.getElementById('toggle-grid').classList.add('button-on');
+            document.getElementById('toggle-grid').classList.remove('button-off');
+
         })
     } else {
         gridItems.forEach(function (element) {
             gridActive = false
             element.classList.remove('grid-toggle')
+            document.getElementById('toggle-grid').classList.remove('button-on');
+            document.getElementById('toggle-grid').classList.add('button-off');
         })
     }
+}
+
+// Function for clearing the grid entirely
+let clearGridActive = false
+
+function clearGrid() {
+    const slider = document.getElementById('myRange')
+
+    if (clearGridActive === false) {
+        clearGridActive = true
+        document.getElementById('clear-grid').classList.add('button-on');
+        document.getElementById('clear-grid').classList.remove('button-off');
+    } else {
+        clearGridActive = false
+        document.getElementById('clear-grid').classList.remove('button-on');
+        document.getElementById('clear-grid').classList.add('button-off');
+    }
+
+    createGrid(slider.value)
 }
 
 createGrid(25)
