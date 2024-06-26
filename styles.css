@@ -104,8 +104,14 @@ body {
     width: 220px;
 }
 
+input[type="color"] {
+    border: none; /* Removes default border */
+    padding: 0; /* Resets padding */
+    background: none; /* Removes any default background */
+}
+
 .color-picker input[type="color"] {
-    border: 0px solid var(--accent-color);
+    border: 2.8px solid var(--accent-color);
     height: 70%; /* Set height to ensure it fits well */
     cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
     width: 70%; /* Expand to fill its container */
@@ -114,12 +120,29 @@ body {
     margin: 0;
     justify-content: center;
     background: transparent;
+    box-sizing: border-box;
+    border-radius: 4px;
+    -webkit-appearance: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+	border: none;
 }
 
 .color-picker {
     display: flex;
     justify-content: center;
     align-items:center;
+}
+
+.color-picker::-webkit-color-swatch,
+.color-picker::-moz-color-swatch {
+  border-color: transparent;
+  border: none;
 }
 
 .settings div {
@@ -136,6 +159,7 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     transition: background-color 0.1s, color 0.1s;
     border-radius: 5px;
+    font-weight: 700;
 }
 
 @media (max-width: 1082px) {
