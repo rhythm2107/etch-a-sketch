@@ -1,10 +1,6 @@
-# etch-a-sketch
-
-![Example Image](sketchbook.png)
-
 # 🎨 Etch-a-Sketch
 
-![Etch-a-Sketch Screenshot](etch-a-sketch.png)
+![Etch-a-Sketch Screenshot](sketchbook.png)
 
 ## 🚀 Live Demo
 
@@ -13,6 +9,7 @@ Check it out here: [Etch-a-Sketch](https://rhythm2107.github.io/etch-a-sketch/)
 ## 📌 Description
 
 A colorful and interactive Etch-a-Sketch web application built with HTML, CSS, and JavaScript.
+
 Feel free to doodle all you want 👀
 
 ## ✨ Features
